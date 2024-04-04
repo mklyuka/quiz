@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 import random
-import pytest
+import string
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.headless = False
@@ -32,14 +32,13 @@ def not_presence_el_loc(CSS_SELECTOR):
         EC.presence_of_element_located((By.CSS_SELECTOR, CSS_SELECTOR))
     )
 
-#Словарь имен
-names = ['Максим', 'Михаил', 'Александр', 'Дмитрий', 'Денис', 'Илья', 'Андрей', 'Даниил', 'Артём', 'Иван', 'Алексей', 'Никита',
-         'Павел', 'Евгений', 'Анна', 'Мария', 'Юлия', 'Алёна', 'Анастасия', 'Екатерина', 'Дарья', 'Ксения', 'Кристина', 'Алиса',
-         'Shura', '@Marshal@', 'Park Gorkogo', 'Антон Палыч Чехов', 'Достоевский Ф. М.']
-
-x = '0123456789'
-
-
+def random_alphanumeric_string(length):
+    return ''.join(
+        random.choices(
+            string.ascii_letters + string.digits,
+            k=length
+        )
+    )
 
 try:
     link = 'https://start.1t.ru/1tquiz/#/reg'
@@ -47,7 +46,7 @@ try:
 
     # Ввод имени в поле ввода
     el_to_be_clickable('[aria-label="Ваше имя или никнейм"]')
-    browser.find_element(By.CSS_SELECTOR, '[aria-label="Ваше имя или никнейм"]').send_keys(random.choice(names) + str(random.randint(100, 1000)))
+    browser.find_element(By.CSS_SELECTOR, '[aria-label="Ваше имя или никнейм"]').send_keys(random_alphanumeric_string(15))
 
     # Клик по кнопке ДАЛЕЕ
     el_to_be_clickable('.q-btn__content')

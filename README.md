@@ -12,7 +12,5 @@ load testing
 выбирайте под свою операционную систему
 
 2. Установить пакеты:
-    1. pip install selenium
-    2. pip install pytest
-    3. pip install pytest-xdist 
+    1. pip install selenium 
 
