@@ -37,13 +37,17 @@ names = ['Максим', 'Михаил', 'Александр', 'Дмитрий',
          'Павел', 'Евгений', 'Анна', 'Мария', 'Юлия', 'Алёна', 'Анастасия', 'Екатерина', 'Дарья', 'Ксения', 'Кристина', 'Алиса',
          'Shura', '@Marshal@', 'Park Gorkogo', 'Антон Палыч Чехов', 'Достоевский Ф. М.']
 
+x = '0123456789'
+
+
+
 try:
     link = 'https://start.1t.ru/1tquiz/#/reg'
     browser.get(link)
 
     # Ввод имени в поле ввода
     el_to_be_clickable('[aria-label="Ваше имя или никнейм"]')
-    browser.find_element(By.CSS_SELECTOR, '[aria-label="Ваше имя или никнейм"]').send_keys(random.choice(names))
+    browser.find_element(By.CSS_SELECTOR, '[aria-label="Ваше имя или никнейм"]').send_keys(random.choice(names) + str(random.randint(100, 1000)))
 
     # Клик по кнопке ДАЛЕЕ
     el_to_be_clickable('.q-btn__content')
