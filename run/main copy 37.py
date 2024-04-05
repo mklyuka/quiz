@@ -9,6 +9,7 @@ import string
 chrome_options = webdriver.ChromeOptions()
 chrome_options.headless = False
 chrome_options.add_argument('--start-maximized')
+chrome_options.add_argument('--headless')
 browser = webdriver.Chrome(options=chrome_options)
 
 # ожидание кликабельности элемента по селектору
@@ -18,12 +19,12 @@ def el_to_be_clickable(CSS_SELECTOR):
         )
 
 def el_to_be_clicable_XP(XPATH):
-    en_af = WebDriverWait(browser, 100, 1).until(
+    en_af = WebDriverWait(browser, 1200, 1).until(
             EC.element_to_be_clickable((By.XPATH, XPATH))
         )
 
 def el_not_clicable_XP(XPATH):
-    en_af = WebDriverWait(browser, 100, 1).until(
+    en_af = WebDriverWait(browser, 1200, 1).until(
             EC.element_to_be_clickable((By.XPATH, XPATH))
         )
 
@@ -33,12 +34,14 @@ def not_presence_el_loc(CSS_SELECTOR):
     )
 
 def random_alphanumeric_string(length):
-    return ''.join(
+    x = ''.join(
         random.choices(
             string.ascii_letters + string.digits,
             k=length
         )
     )
+    print(x)
+    return x
 
 try:
     link = 'https://start.1t.ru/1tquiz/#/reg'
@@ -56,9 +59,9 @@ try:
         el_to_be_clickable('[style=""]')
         time.sleep(random.randint(4, 12))
 
-        browser.find_element(By.CSS_SELECTOR, '.flex.fit>.col>button:nth-child({})'.format(random.randint(1, 4))).click()
+        browser.find_element(By.CSS_SELECTOR, '.flex.fit>.col>button:nth-child({})'.format(random.randint(1, 2))).click()
 
-        
+        el_to_be_clicable_XP("//div[text()=' Ожидайте следующий вопрос ']")
         el_not_clicable_XP("//div[text()=' Ожидайте следующий вопрос ']")
 
 

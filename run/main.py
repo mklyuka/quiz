@@ -9,6 +9,7 @@ import string
 chrome_options = webdriver.ChromeOptions()
 chrome_options.headless = False
 chrome_options.add_argument('--start-maximized')
+chrome_options.add_argument('--headless')
 browser = webdriver.Chrome(options=chrome_options)
 
 # ожидание кликабельности элемента по селектору
@@ -33,12 +34,14 @@ def not_presence_el_loc(CSS_SELECTOR):
     )
 
 def random_alphanumeric_string(length):
-    return ''.join(
+    x = ''.join(
         random.choices(
             string.ascii_letters + string.digits,
             k=length
         )
     )
+    print(x)
+    return x
 
 try:
     link = 'https://start.1t.ru/1tquiz/#/reg'

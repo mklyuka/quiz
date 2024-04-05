@@ -30,6 +30,7 @@ def not_presence_el_loc(CSS_SELECTOR):
     WebDriverWait(browser, 1200).until_not(
         EC.presence_of_element_located((By.CSS_SELECTOR, CSS_SELECTOR))
     )
+    
 
 def random_alphanumeric_string(length):
     return ''.join(
